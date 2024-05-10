@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/store';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { getCurrentCrewAuth } from 'apis/crewAuth';
+import toast, { Toaster } from 'react-hot-toast';
 
 import bepLogoSVG from 'assets/svg/bep_blue_logo.svg';
 import dashboardSVG from 'assets/svg/dashboard_icon.svg';
@@ -27,7 +28,7 @@ const SideMenu: React.FC = () => {
     const userInfo = useSelector((state: RootState) => state.userAuth.userInfo);
 
     const location = useLocation();
-    const [activeMenuIndex, setActiveMenuIndex] = useState<number>();
+    const [activeMenuIndex, setActiveMenuIndex] = useState<number | null>(null);
 
     const menuList: Menu[] = [
         {
@@ -53,8 +54,14 @@ const SideMenu: React.FC = () => {
     };
 
     const getCurrent = async (accessToken: string) => {
-        const crewData = await getCurrentCrewAuth(accessToken);
-        dispatch(setCrewAuth(crewData));
+        try {
+            const crewData = await getCurrentCrewAuth(accessToken);
+            dispatch(setCrewAuth(crewData));
+        } catch (error) {
+            toast.error('인증이 만료되었습니다');
+            dispatch(initAuth());
+            navigate('/login');
+        }
     };
 
     const handleClickMenu = (index: number) => {
@@ -133,6 +140,7 @@ const SideMenu: React.FC = () => {
                 </CopyrightText>
                 <CopyrightText>All Rights Reserved.</CopyrightText>
             </CopyrightWrap>
+            <Toaster />
         </SideMenuWrap>
     );
 };

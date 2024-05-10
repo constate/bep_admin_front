@@ -12,7 +12,7 @@ export const getCrewLoginAuth = async (loginJson: LoginCredentials) => {
             {
                 username,
                 password,
-                expiresInMins: 60,
+                expiresInMins: 1,
             },
             {
                 headers: {

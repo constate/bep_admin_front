@@ -39,18 +39,14 @@ const LoginPage = () => {
     const handleSignupBtn = () => {
         toast(
             <div>
-                <p style={{ fontSize: '14px' }}>계정만들기 클릭</p>
-                <p style={{ fontSize: '14px' }}>dummyjson API를 이용했습니다</p>
+                <p style={{ fontSize: '14px' }}>dummyjson API를 이용하여</p>
                 <p style={{ fontSize: '14px' }}>
-                    개발자도구에 로그인 계정이 있습니다
+                    이미 생성되어 있는 계정으로 로그인이 가능합니다
+                </p>
+                <p style={{ fontSize: '14px' }}>
+                    개발자도구 Console에 로그인 계정이 작성되어 있습니다
                 </p>
             </div>,
-            // {
-            //     duration: 6000,
-            //     style: {
-            //         fontSize: '18px',
-            //     },
-            // },
         );
         console.log(`이름: Jeanne\nID: kminchelle\n PW: 0lelplR`);
         console.log(`이름: Terry\n ID: atuny0\n PW: 9uQFF1Lh`);

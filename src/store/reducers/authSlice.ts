@@ -31,7 +31,6 @@ export const authSlice = createSlice({
             state.userInfo = action.payload;
             console.log(state.userInfo);
             if (action.payload.token) {
-                state.userToken = action.payload.token;
                 localStorage.setItem(
                     'BEP_ADMIN_ACCESS_TOKEN',
                     action.payload.token,
@@ -40,7 +39,6 @@ export const authSlice = createSlice({
         },
         initAuth: (state) => {
             state.userInfo = null;
-            state.userToken = null;
             localStorage.removeItem('BEP_ADMIN_ACCESS_TOKEN');
         },
     },
